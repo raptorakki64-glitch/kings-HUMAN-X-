@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 interface Particle {
   x: number;
@@ -14,7 +14,7 @@ interface Particle {
 export default function PixelHero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
+  const isHoveredRef = useRef(false);
   const mouseRef = useRef({ x: -1000, y: -1000 });
 
   useEffect(() => {
@@ -51,7 +51,7 @@ export default function PixelHero() {
             vx: 0,
             vy: 0,
             size: 2, // 2px precise squares/dots
-            alpha: 0.15, // Low-opacity grid structure
+            alpha: 0.08, // Low-opacity grid structure
           });
         }
       }
@@ -74,7 +74,16 @@ export default function PixelHero() {
     const resizeObserver = new ResizeObserver(handleResize);
     resizeObserver.observe(container);
 
+    let running = true;
+    const io = new IntersectionObserver(([entry]) => {
+      const visible = entry.isIntersecting;
+      if (visible && !running) { running = true; animate(); }
+      if (!visible) { running = false; cancelAnimationFrame(animationFrameId); }
+    });
+    io.observe(container);
+
     const animate = () => {
+      if (!running) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       const mx = mouseRef.current.x;
@@ -89,7 +98,7 @@ export default function PixelHero() {
         const distSq = dx * dx + dy * dy;
         const dist = Math.sqrt(distSq);
 
-        if (dist < mouseRadius && isHovered) {
+        if (dist < mouseRadius && isHoveredRef.current) {
           // Repulsion force formula: stronger when closer
           const force = (mouseRadius - dist) / mouseRadius;
           const angle = Math.atan2(dy, dx);
@@ -98,12 +107,12 @@ export default function PixelHero() {
 
           p.vx += pushX;
           p.vy += pushY;
-          
+
           // Glow and illuminate close elements subtly
-          p.alpha = 0.15 + (1 - dist / mouseRadius) * 0.45;
+          p.alpha = 0.08 + (1 - dist / mouseRadius) * 0.3;
         } else {
           // Fade back to baseline grid opacity
-          p.alpha += (0.15 - p.alpha) * 0.1;
+          p.alpha += (0.08 - p.alpha) * 0.1;
         }
 
         // 2. Spring force back to home position (discipline / control)
@@ -134,9 +143,11 @@ export default function PixelHero() {
       mouseRef.current.y = e.clientY - rect.top;
     };
 
-    const handleMouseEnter = () => setIsHovered(true);
+    const handleMouseEnter = () => {
+      isHoveredRef.current = true;
+    };
     const handleMouseLeave = () => {
-      setIsHovered(false);
+      isHoveredRef.current = false;
       mouseRef.current.x = -1000;
       mouseRef.current.y = -1000;
     };
@@ -147,6 +158,7 @@ export default function PixelHero() {
 
     return () => {
       resizeObserver.disconnect();
+      io.disconnect();
       cancelAnimationFrame(animationFrameId);
       if (container) {
         container.removeEventListener("mousemove", handleMouseMove);
@@ -154,7 +166,11 @@ export default function PixelHero() {
         container.removeEventListener("mouseleave", handleMouseLeave);
       }
     };
-  }, [isHovered]);
+  }, []);
+
+  if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return null;
+  }
 
   return (
     <div

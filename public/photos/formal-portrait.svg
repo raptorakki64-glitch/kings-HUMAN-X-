@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1200" viewBox="0 0 900 1200">
+  <rect width="900" height="1200" fill="#131316"/>
+  <rect x="24" y="24" width="852" height="1152" fill="none" stroke="#2a2a2e" stroke-width="2" stroke-dasharray="8 8"/>
+  <text x="450" y="590" fill="#71717A" font-family="monospace" font-size="34" text-anchor="middle">PLACEHOLDER</text>
+  <text x="450" y="640" fill="#71717A" font-family="monospace" font-size="28" text-anchor="middle">formal-portrait</text>
+</svg>

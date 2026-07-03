@@ -1,15 +1,67 @@
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..700&family=Geist:wght@100..900&family=JetBrains+Mono:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300..900&family=JetBrains+Mono:wght@400;500;700&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-serif: "EB Garamond", Georgia, serif;
-  --font-sans: "Geist", "Inter", sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --color-ink: #0A0A0B;
+  --color-surface: #131316;
+  --color-line: rgba(255, 255, 255, 0.08);
+  --color-line-strong: rgba(255, 255, 255, 0.25);
+  --color-text-hi: #F4F4F5;
+  --color-text-mid: #A1A1AA;
+  --color-text-low: #71717A;
+  --color-signal: #E11D48;
+  --color-signal-hover: #BE123C;
+
+  --font-display: "Geist", ui-sans-serif, sans-serif;
+  --font-sans: "Geist", ui-sans-serif, sans-serif;
+  --font-serif: "Newsreader", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --radius-sharp: 2px;
+  --radius-frame: 12px;
 }
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
   }
+  body {
+    background: var(--color-ink);
+    color: var(--color-text-hi);
+    font-family: var(--font-sans);
+    line-height: 1.7;
+  }
+  ::selection { background: rgba(225, 29, 72, 0.25); color: var(--color-text-hi); }
 }
 
+/* Art-directed photo treatment: desaturate, ink-shadow duotone, 4% grain */
+.photo-frame {
+  position: relative;
+  border-radius: var(--radius-frame);
+  overflow: hidden;
+  background: var(--color-surface);
+}
+.photo-frame > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.82) contrast(1.03);
+}
+.photo-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+}
+.photo-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(10, 10, 11, 0.38), transparent 55%);
+}
