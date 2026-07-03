@@ -4,7 +4,7 @@ import Button from "../primitives/Button";
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 md:py-40 border-t border-line">
+    <section id="contact" className="py-24 md:py-40 border-t border-line scroll-mt-16">
       <div className="max-w-6xl mx-auto px-6 md:px-8">
         <Reveal>
           <h2

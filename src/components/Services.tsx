@@ -4,7 +4,7 @@ import SectionHeader from "../primitives/SectionHeader";
 
 export default function Services() {
   return (
-    <section id="services" className="py-24 md:py-40 border-t border-line">
+    <section id="services" className="py-24 md:py-40 border-t border-line scroll-mt-16">
       <div className="max-w-6xl mx-auto px-6 md:px-8">
         <SectionHeader kicker={services.kicker} title={services.title} />
 

@@ -5,6 +5,7 @@
   --color-ink: #0A0A0B;
   --color-surface: #131316;
   --color-line: rgba(255, 255, 255, 0.08);
+  --color-line-strong: rgba(255, 255, 255, 0.25);
   --color-text-hi: #F4F4F5;
   --color-text-mid: #A1A1AA;
   --color-text-low: #71717A;

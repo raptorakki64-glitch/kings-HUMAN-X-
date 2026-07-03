@@ -5,7 +5,7 @@ import SectionHeader from "../primitives/SectionHeader";
 
 export default function Story() {
   return (
-    <section className="py-24 md:py-40">
+    <section id="story" className="py-24 md:py-40 scroll-mt-16">
       <div className="max-w-6xl mx-auto px-6 md:px-8">
         <SectionHeader kicker={story.kicker} title={story.title} />
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start">

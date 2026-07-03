@@ -14,7 +14,7 @@ export default function Hero() {
   });
 
   return (
-    <section id="story" className="relative min-h-[88vh] flex items-center overflow-hidden">
+    <section className="relative min-h-[88vh] flex items-center overflow-hidden">
       <div className="absolute inset-0 opacity-60">
         <PixelHero />
       </div>

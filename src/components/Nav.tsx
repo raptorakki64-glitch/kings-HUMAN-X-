@@ -1,4 +1,4 @@
-import { site } from "../content";
+import { hero, site } from "../content";
 
 const links = [
   { href: "#story", label: "Story" },
@@ -28,7 +28,7 @@ export default function Nav() {
           href="#contact"
           className="inline-flex items-center justify-center font-mono text-xs font-medium uppercase tracking-[0.15em] px-5 min-h-12 rounded-(--radius-sharp) bg-signal text-white hover:bg-signal-hover transition-colors duration-200 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-signal"
         >
-          Work with me
+          {hero.cta}
         </a>
       </nav>
     </header>

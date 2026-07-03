@@ -40,7 +40,7 @@ function Stat({ stat }: { stat: ProofStat }) {
 
 export default function ProofStrip() {
   return (
-    <section id="proof" className="border-y border-line bg-surface/60">
+    <section id="proof" className="border-y border-line bg-surface/60 scroll-mt-16">
       <div className="max-w-6xl mx-auto px-6 md:px-8 py-12 md:py-16 grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10">
         {proof.map((stat) => (
           <Stat key={stat.label} stat={stat} />
