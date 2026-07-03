@@ -4,6 +4,7 @@ import Hero from "./components/Hero";
 import ProofStrip from "./components/ProofStrip";
 import Story from "./components/Story";
 import Gallery from "./components/Gallery";
+import CaseStudies from "./components/CaseStudies";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <ProofStrip />
         <Story />
         <Gallery />
+        <CaseStudies />
         {/* sections appended by subsequent tasks */}
       </main>
       <Footer />
