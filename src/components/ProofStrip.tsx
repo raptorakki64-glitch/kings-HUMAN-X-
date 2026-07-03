@@ -16,8 +16,8 @@ function Stat({ stat }: { stat: ProofStat }) {
     }
     let raf = 0;
     const start = performance.now();
-    const tick = (now: number) => {
-      const t = Math.min((now - start) / (DUR.count * 1000), 1);
+    const tick = () => {
+      const t = Math.min((performance.now() - start) / (DUR.count * 1000), 1);
       const eased = 1 - Math.pow(1 - t, 3);
       setDisplay(Math.round(stat.value * eased));
       if (t < 1) raf = requestAnimationFrame(tick);
