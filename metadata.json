@@ -1,0 +1,6 @@
+{
+  "name": "Silent Precision Portfolio",
+  "description": "Personal brand website for professional cricketer and hybrid athlete Golla Aakash Venkat, featuring a dark, disciplined aesthetic and interactive precision elements.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
