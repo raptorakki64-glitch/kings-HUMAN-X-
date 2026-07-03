@@ -1,13 +1,9 @@
-import { memo, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useInView, useReducedMotion } from "motion/react";
-import { proof } from "../content";
+import { proof, ProofStat } from "../content";
 import { DUR } from "../motion";
 
-interface StatProps {
-  stat: typeof proof[number];
-}
-
-const Stat = memo(function Stat({ stat }: StatProps) {
+function Stat({ stat }: { stat: ProofStat }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
   const reduced = useReducedMotion();
@@ -40,14 +36,14 @@ const Stat = memo(function Stat({ stat }: StatProps) {
       <div className="mt-2 text-sm text-text-mid max-w-[22ch]">{stat.label}</div>
     </div>
   );
-});
+}
 
 export default function ProofStrip() {
   return (
     <section id="proof" className="border-y border-line bg-surface/60">
       <div className="max-w-6xl mx-auto px-6 md:px-8 py-12 md:py-16 grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10">
-        {proof.map((stat, idx) => (
-          <Stat key={idx} stat={stat} />
+        {proof.map((stat) => (
+          <Stat key={stat.label} stat={stat} />
         ))}
       </div>
     </section>
