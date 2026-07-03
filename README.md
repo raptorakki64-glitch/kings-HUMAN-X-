@@ -1,20 +1,15 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Silent Precision — Golla Aakash Venkat
 
-# Run and deploy your AI Studio app
+Personal brand-advisory site. Editorial Athlete design (spec in
+`docs/superpowers/specs/`). Vite + React 19 + Tailwind 4 + motion.
 
-This contains everything you need to run your app locally.
+## Develop
+npm install
+npm run dev        # vite dev server
+npm run lint       # tsc --noEmit
+npm run build      # production build
 
-View your app in AI Studio: https://ai.studio/apps/b866c897-fd19-41e4-835f-572e8867c81c
-
-## Run Locally
-
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Content
+All copy and data: `src/content.ts`. Photos: `public/photos/`
+(replace placeholder SVGs with real images, same filenames — then update
+the `src` fields in `src/content.ts`).
