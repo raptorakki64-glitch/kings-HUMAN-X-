@@ -29,11 +29,13 @@ export default function Hero() {
           <motion.h1
             {...enter(0.08)}
             className="font-display font-extrabold tracking-tight leading-[0.95] text-text-hi"
-            style={{ fontSize: "clamp(2.5rem, 5vw, 4.75rem)" }}
+            style={{ fontSize: "clamp(3rem, 7vw, 7rem)" }}
           >
             {hero.headline[0]}
             <br />
             {hero.headline[1]}
+            <br />
+            {hero.headline[2]}
           </motion.h1>
           <motion.p
             {...enter(0.16)}

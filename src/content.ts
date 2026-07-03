@@ -29,7 +29,7 @@ export const site = {
 
 export const hero = {
   kicker: "Golla Aakash Venkat — Brand Strategist & Hybrid Athlete",
-  headline: ["DISCIPLINE IS", "THE STRATEGY."] as [string, string],
+  headline: ["VISION.", "IDEA.", "EXECUTE."] as [string, string, string],
   sub: "I'm a cricketer who became an operator. I build brands for founders and athletes the way athletes build seasons — deliberately, measurably, under pressure.",
   cta: "Work with me",
   photo: {
