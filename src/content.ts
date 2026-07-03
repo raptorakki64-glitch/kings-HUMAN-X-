@@ -40,7 +40,7 @@ export const hero = {
 };
 
 export const proof: ProofStat[] = [
-  { prefix: "₹", value: 300000, label: "revenue generated — GAV Farming" },
+  { prefix: "₹", value: 300000, label: "revenue generated — AK Farming" },
   { value: 200, suffix: "+", label: "boxes sold direct to consumers" },
   { value: 200, suffix: "+", label: "admissions added — Chanikya High School" },
   { value: 10, suffix: "x", label: "organic social growth" },
@@ -79,7 +79,7 @@ export const caseStudies = {
   entries: [
     {
       tag: "Commerce",
-      title: "GAV Farming",
+      title: "AK Farming",
       body: "I applied operational discipline to agricultural commerce — streamlined the supply chain and sold direct to consumers instead of through middlemen. Sourcing, packing, pricing and the social presence that moved it.",
       metrics: [
         { label: "Revenue", value: "₹3,00,000" },
