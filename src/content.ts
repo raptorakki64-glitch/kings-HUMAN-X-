@@ -159,3 +159,16 @@ export const contact = {
   headline: "Let's talk.",
   sub: "Tell me what you're building and where it's stuck. I reply within a day.",
 };
+
+export const INTERESTS = ["Positioning Sprint", "Advisory Retainer", "Not sure yet"] as const;
+
+export const inquiryCopy = {
+  heading: "Or write to me here",
+  name: "Name",
+  email: "Email",
+  interest: "What do you need",
+  message: "What are you building, and where is it stuck?",
+  submit: "Send inquiry",
+  submitting: "Sending…",
+  success: "Got it — I reply within a day.",
+};
