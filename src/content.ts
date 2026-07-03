@@ -33,7 +33,7 @@ export const hero = {
   sub: "I'm a cricketer who became an operator. I build brands for founders and athletes the way athletes build seasons — deliberately, measurably, under pressure.",
   cta: "Work with me",
   photo: {
-    src: "/photos/cricket-batting.svg",
+    src: "/photos/cricket-batting.jpg",
     alt: "Aakash walking out to bat in Purple Panthers kit",
     ratio: "3 / 4",
   } as PhotoRef,
@@ -55,8 +55,8 @@ export const story = {
   ] as [string, string],
   pullQuote: "I build brands the way athletes build seasons.",
   photo: {
-    src: "/photos/formal-portrait.svg",
-    alt: "Aakash in a black suit",
+    src: "/photos/waterfront.jpg",
+    alt: "Aakash at the marina, off the field",
     caption: "Off the field",
     ratio: "3 / 4",
   } as PhotoRef,
@@ -66,10 +66,10 @@ export const gallery = {
   kicker: "The Athlete",
   title: "Trained for pressure",
   photos: [
-    { src: "/photos/cricket-batting.svg", alt: "Walking out to bat, Purple Panthers kit", caption: "Match day", ratio: "2 / 3" },
-    { src: "/photos/golf-swing.svg", alt: "Mid golf swing at the driving range", caption: "Range work", ratio: "3 / 4" },
-    { src: "/photos/formal-portrait.svg", alt: "Black suit, marble interior", caption: "Off the field", ratio: "3 / 4" },
-    { src: "/photos/waterfront-portrait.svg", alt: "At the marina", caption: "On the road", ratio: "1 / 1" },
+    { src: "/photos/cricket-batting.jpg", alt: "Walking out to bat, Purple Panthers kit", caption: "Match day", ratio: "2 / 3" },
+    { src: "/photos/golf-swing.jpg", alt: "Mid golf swing at the driving range", caption: "Range work", ratio: "3 / 4" },
+    { src: "/photos/cricket-league.jpg", alt: "Walking out to bat in league kit", caption: "League season", ratio: "3 / 4" },
+    { src: "/photos/waterfront.jpg", alt: "At the marina", caption: "On the road", ratio: "1 / 1" },
   ] as PhotoRef[],
 };
 
