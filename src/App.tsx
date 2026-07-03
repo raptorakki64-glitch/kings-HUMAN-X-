@@ -5,6 +5,7 @@ import ProofStrip from "./components/ProofStrip";
 import Story from "./components/Story";
 import Gallery from "./components/Gallery";
 import CaseStudies from "./components/CaseStudies";
+import Capabilities from "./components/Capabilities";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Story />
         <Gallery />
         <CaseStudies />
+        <Capabilities />
         {/* sections appended by subsequent tasks */}
       </main>
       <Footer />
