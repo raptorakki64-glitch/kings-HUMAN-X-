@@ -1,6 +1,7 @@
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
+import ProofStrip from "./components/ProofStrip";
 
 export default function App() {
   return (
@@ -8,6 +9,7 @@ export default function App() {
       <Nav />
       <main className="pt-16">
         <Hero />
+        <ProofStrip />
         {/* sections appended by subsequent tasks */}
       </main>
       <Footer />
