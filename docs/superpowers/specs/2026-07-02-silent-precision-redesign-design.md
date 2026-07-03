@@ -122,14 +122,18 @@ Deleted: `FrostedGlassPanel.tsx`, the fake `ContactForm.tsx`.
   pattern from FrostedGlassPanel callers (moot — component deleted)
 - `metadata.json`: remove false server-side Gemini capability claim
 
-## Content Akki must provide
+## Content status
 
-- Photos (hero portrait, 1 story photo, 4–6 gallery shots)
-- LinkedIn URL
-- Optional: expanded case-study detail, gallery captions (place/year)
+- LinkedIn: `https://www.linkedin.com/in/aakash-venkat-golla-664907309` ✔ received
+- Photos ✔ selected (4), pending file delivery to `photos-raw/`:
+  1. `cricket-batting` — Purple Panthers kit, walking with bat → athletic anchor, hero candidate
+  2. `formal-portrait` — black suit, baroque interior → operator image, story section
+  3. `golf-swing` — driving range mid-swing → hybrid-athlete, gallery
+  4. `waterfront-portrait` — marina, casual → gallery
+- Optional, later: expanded case-study detail, gallery captions (place/year)
 
-Until provided: build with clearly-marked local placeholder images sized to
-final aspect ratios; never ship them.
+Until image files land in `photos-raw/`: build with clearly-marked local
+placeholder images at the final aspect ratios; never ship them.
 
 ## Verification (per implementation step)
 
