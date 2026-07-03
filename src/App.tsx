@@ -7,6 +7,7 @@ import Gallery from "./components/Gallery";
 import CaseStudies from "./components/CaseStudies";
 import Capabilities from "./components/Capabilities";
 import Services from "./components/Services";
+import Contact from "./components/Contact";
 
 export default function App() {
   return (
@@ -20,7 +21,7 @@ export default function App() {
         <CaseStudies />
         <Capabilities />
         <Services />
-        {/* sections appended by subsequent tasks */}
+        <Contact />
       </main>
       <Footer />
     </div>
