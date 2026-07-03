@@ -40,12 +40,9 @@ export function validateInquiry(body: unknown): ValidationResult {
 
 export const MIN_FORM_MS = 3000;
 
-export function isBot(
-  b: { company?: unknown; startedAt?: unknown },
-  now: number = Date.now(),
-): boolean {
+export function isBot(b: { company?: unknown; elapsedMs?: unknown }): boolean {
   if (typeof b.company === "string" && b.company.trim() !== "") return true;
-  if (typeof b.startedAt !== "number" || !Number.isFinite(b.startedAt)) return true;
-  if (now - b.startedAt < MIN_FORM_MS) return true;
+  if (typeof b.elapsedMs !== "number" || !Number.isFinite(b.elapsedMs)) return true;
+  if (b.elapsedMs < MIN_FORM_MS) return true;
   return false;
 }

@@ -17,6 +17,7 @@ export default function InquiryForm() {
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (status === "submitting") return;
     const data = new FormData(e.currentTarget);
     setStatus("submitting");
     setError("");
@@ -30,7 +31,7 @@ export default function InquiryForm() {
           interest,
           message: data.get("message"),
           company: data.get("company"),
-          startedAt: startedAt.current,
+          elapsedMs: Date.now() - startedAt.current,
         }),
       });
       const json = (await res.json()) as { ok: boolean; error?: string };

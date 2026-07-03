@@ -55,8 +55,8 @@ export async function processInquiry(
   }
 
   const v = validateInquiry(b);
-  if (!v.ok) {
-    return { status: 400, body: { ok: false, error: (v as { ok: false; error: string }).error } };
+  if (v.ok === false) {
+    return { status: 400, body: { ok: false, error: v.error } };
   }
 
   const recent = await deps.countRecentByIp(meta.ipHash);

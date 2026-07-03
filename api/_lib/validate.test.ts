@@ -42,24 +42,24 @@ describe("validateInquiry", () => {
   });
   it("error messages name the field in plain language", () => {
     const r = validateInquiry({ ...good, email: "nope" });
-    if (!r.ok) expect((r as { ok: false; error: string }).error).toMatch(/^email:/);
+    if (!r.ok) expect(r.error).toMatch(/^email:/);
   });
 });
 
 describe("isBot", () => {
-  const now = 1_000_000_000;
   it("flags filled honeypot", () => {
-    expect(isBot({ company: "Acme", startedAt: now - 60_000 }, now)).toBe(true);
+    expect(isBot({ company: "Acme", elapsedMs: 60_000 })).toBe(true);
   });
-  it("flags missing or non-numeric startedAt", () => {
-    expect(isBot({ company: "" }, now)).toBe(true);
-    expect(isBot({ company: "", startedAt: "yes" }, now)).toBe(true);
+  it("flags missing or non-numeric elapsedMs", () => {
+    expect(isBot({ company: "" })).toBe(true);
+    expect(isBot({ company: "", elapsedMs: "yes" })).toBe(true);
+    expect(isBot({ company: "", elapsedMs: Infinity })).toBe(true);
   });
   it("flags submissions faster than MIN_FORM_MS", () => {
-    expect(isBot({ company: "", startedAt: now - (MIN_FORM_MS - 1) }, now)).toBe(true);
+    expect(isBot({ company: "", elapsedMs: MIN_FORM_MS - 1 })).toBe(true);
   });
   it("passes a human-speed submission with empty honeypot", () => {
-    expect(isBot({ company: "", startedAt: now - MIN_FORM_MS }, now)).toBe(false);
-    expect(isBot({ startedAt: now - 60_000 }, now)).toBe(false);
+    expect(isBot({ company: "", elapsedMs: MIN_FORM_MS })).toBe(false);
+    expect(isBot({ elapsedMs: 60_000 })).toBe(false);
   });
 });

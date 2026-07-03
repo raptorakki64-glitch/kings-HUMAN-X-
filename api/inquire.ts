@@ -12,6 +12,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse): 
     return;
   }
 
+  for (const name of ["SUPABASE_URL", "SUPABASE_SERVICE_ROLE_KEY", "RESEND_API_KEY", "IP_HASH_SALT"] as const) {
+    if (!process.env[name]) {
+      console.error(`missing env var: ${name}`);
+      res.status(500).json({ ok: false, error: "Something went wrong — please email me directly." });
+      return;
+    }
+  }
+
   const supabase = createClient(
     process.env.SUPABASE_URL as string,
     process.env.SUPABASE_SERVICE_ROLE_KEY as string,
@@ -41,12 +49,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse): 
       if (error) throw new Error(error.message);
     },
     async sendNotification(f) {
-      await resend.emails.send({
+      const { error } = await resend.emails.send({
         from: "Silent Precision <onboarding@resend.dev>",
         to: "raptor.akki.64@gmail.com",
         subject: `New inquiry — ${f.name} (${f.interest})`,
         text: `Name: ${f.name}\nEmail: ${f.email}\nInterest: ${f.interest}\nReferrer: ${f.referrer || "direct"}\n\n${f.message}`,
       });
+      if (error) throw new Error(error.message);
     },
     log: (m) => console.error(m),
   };

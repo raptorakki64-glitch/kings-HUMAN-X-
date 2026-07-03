@@ -8,7 +8,7 @@ const humanBody = {
   interest: "Positioning Sprint",
   message: "I run a fintech and our positioning is mush.",
   company: "",
-  startedAt: Date.now() - 60_000,
+  elapsedMs: 60_000,
 };
 
 function fakeDeps(overrides: Partial<InquiryDeps> = {}): InquiryDeps & {
@@ -54,7 +54,7 @@ describe("processInquiry", () => {
   });
   it("silently discards too-fast submissions", async () => {
     const deps = fakeDeps();
-    const r = await processInquiry({ ...humanBody, startedAt: Date.now() }, meta, deps);
+    const r = await processInquiry({ ...humanBody, elapsedMs: 100 }, meta, deps);
     expect(r.status).toBe(200);
     expect(deps.inserted).toHaveLength(0);
   });
