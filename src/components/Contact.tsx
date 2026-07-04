@@ -1,6 +1,8 @@
-import { contact, site } from "../content";
+import { track } from "@vercel/analytics";
+import { contact, site, inquiryCopy } from "../content";
 import Reveal from "../primitives/Reveal";
 import Button from "../primitives/Button";
+import InquiryForm from "./InquiryForm";
 
 export default function Contact() {
   return (
@@ -18,8 +20,10 @@ export default function Contact() {
           <p className="mt-6 max-w-xl text-base md:text-lg text-text-mid">{contact.sub}</p>
         </Reveal>
         <Reveal delay={0.16} className="mt-10 flex flex-wrap items-center gap-4">
-          <Button href={`mailto:${site.email}`}>Email me</Button>
-          <Button href={site.whatsapp} variant="ghost" external>
+          <Button href={`mailto:${site.email}`} onClick={() => track("email_click")}>
+            Email me
+          </Button>
+          <Button href={site.whatsapp} variant="ghost" external onClick={() => track("whatsapp_click")}>
             WhatsApp
           </Button>
           <a
@@ -30,6 +34,14 @@ export default function Contact() {
           >
             LinkedIn
           </a>
+        </Reveal>
+        <Reveal delay={0.2} className="mt-16 max-w-2xl">
+          <div className="bg-surface border border-line rounded-(--radius-frame) p-8 md:p-10">
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-text-low mb-8">
+              {inquiryCopy.heading}
+            </p>
+            <InquiryForm />
+          </div>
         </Reveal>
       </div>
     </section>

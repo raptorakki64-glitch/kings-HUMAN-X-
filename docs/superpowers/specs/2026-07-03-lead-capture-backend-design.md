@@ -49,7 +49,7 @@ CTA, mono labels, Reveal). Fields:
 - `interest` — segmented choice: "Positioning Sprint" / "Advisory Retainer" / "Not sure yet" (default)
 - `message` — textarea, required, 10–2000 chars
 - `company` — the honeypot: visually hidden (CSS, not `display:none` alone; also `tabindex="-1"`, `autocomplete="off"`), real users never fill it
-- `startedAt` — hidden timestamp set on mount, for the time-trap
+- `elapsedMs` — client-computed elapsed milliseconds since form mount, sent at submit, for the time-trap (single-clock; immune to client clock skew; still best-effort/spoofable)
 
 States: idle → submitting (button disabled, spinner) → success ("Got it — I
 reply within a day.") or error (inline message near the form: what went wrong,
@@ -60,7 +60,7 @@ errors are announced via `aria-live="polite"`.
 
 ### 2. API — `api/inquire.ts` (Vercel Node function)
 
-Contract: `POST /api/inquire`, JSON body `{ name, email, interest, message, company, startedAt }`.
+Contract: `POST /api/inquire`, JSON body `{ name, email, interest, message, company, elapsedMs }`.
 
 Processing order:
 1. Method check → 405 for non-POST.
@@ -68,7 +68,7 @@ Processing order:
    trims, length caps as above, email regex (pragmatic RFC subset), `interest`
    must be one of the three enum values. Fail → 400 `{ ok:false, error:"<field>: <plain-language reason>" }`.
 3. Honeypot: `company` non-empty → respond 200 `{ ok:true }` and discard
-   (never tip off the bot). Time-trap: `startedAt` missing or < 3000ms ago →
+   (never tip off the bot). Time-trap: `elapsedMs` missing or < 3000 →
    same silent discard. (Client timestamp is spoofable; this is best-effort —
    the rate limit and honeypot are the primary defenses.)
 4. Rate limit: sha256(IP + `IP_HASH_SALT`) → count `inquiries` rows with that
