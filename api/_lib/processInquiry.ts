@@ -1,4 +1,4 @@
-import { validateInquiry, isBot } from "./validate";
+import { validateInquiry, isBot } from "./validate.js";
 
 export interface InquiryRow {
   name: string;

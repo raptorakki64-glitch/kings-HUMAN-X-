@@ -1,4 +1,4 @@
-import { INTERESTS } from "../../src/content";
+export const INTERESTS = ["Positioning Sprint", "Advisory Retainer", "Not sure yet"] as const;
 
 export interface CleanInquiry {
   name: string;

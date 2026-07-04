@@ -2,7 +2,7 @@ import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { createClient } from "@supabase/supabase-js";
 import { Resend } from "resend";
 import { createHash } from "node:crypto";
-import { processInquiry, guardRequest, InquiryDeps } from "./_lib/processInquiry";
+import { processInquiry, guardRequest, InquiryDeps } from "./_lib/processInquiry.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse): Promise<void> {
   const bodyBytes = Buffer.byteLength(JSON.stringify(req.body ?? ""), "utf8");

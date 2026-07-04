@@ -160,7 +160,7 @@ export const contact = {
   sub: "Tell me what you're building and where it's stuck. I reply within a day.",
 };
 
-export const INTERESTS = ["Positioning Sprint", "Advisory Retainer", "Not sure yet"] as const;
+export { INTERESTS } from "../api/_lib/validate";
 
 export const inquiryCopy = {
   heading: "Or write to me here",
