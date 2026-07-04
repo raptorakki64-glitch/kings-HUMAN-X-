@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { createClient } from "@supabase/supabase-js";
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import { Resend } from "resend";
 import { createHash } from "node:crypto";
 import { processInquiry, guardRequest, InquiryDeps } from "./_lib/processInquiry.js";
@@ -20,12 +20,20 @@ export default async function handler(req: VercelRequest, res: VercelResponse): 
     }
   }
 
-  const supabase = createClient(
-    process.env.SUPABASE_URL as string,
-    process.env.SUPABASE_SERVICE_ROLE_KEY as string,
-    { auth: { persistSession: false } },
-  );
-  const resend = new Resend(process.env.RESEND_API_KEY as string);
+  let supabase: SupabaseClient;
+  let resend: Resend;
+  try {
+    supabase = createClient(
+      (process.env.SUPABASE_URL as string).trim(),
+      (process.env.SUPABASE_SERVICE_ROLE_KEY as string).trim(),
+      { auth: { persistSession: false } },
+    );
+    resend = new Resend((process.env.RESEND_API_KEY as string).trim());
+  } catch (e) {
+    console.error(`client init failed: ${e instanceof Error ? e.message : String(e)}`);
+    res.status(500).json({ ok: false, error: "Something went wrong — please email me directly." });
+    return;
+  }
 
   const forwarded = req.headers["x-forwarded-for"];
   const ip = (Array.isArray(forwarded) ? forwarded[0] : forwarded)?.split(",")[0]?.trim() ?? "unknown";
